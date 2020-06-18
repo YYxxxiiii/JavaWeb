@@ -4,7 +4,9 @@ import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBUtil {
 
@@ -38,5 +40,33 @@ public class DBUtil {
         } catch (SQLException e) {
             throw new RuntimeException("获取数据库连接失败",e);
         }
+    }
+
+    /**
+     * jdbc操作步骤:
+     * (1) 创建数据库连接
+     * (2) 创建操作命令对象Statement
+     *      Statement:简单sql语句的执行
+     *      PreparedStatement:可以执行带参数的sql------(1)可以预编译,效率更高(2)防止一定程度的sql注入(单引号转义)
+     * (3) 执行sql
+     * (4) 如果是查询,处理结果集ResuleSet
+     * (5) 释放资源(反向释放)
+     */
+
+    public static void close(Connection c, Statement s, ResultSet r){
+        try {
+            if (r != null)
+                r.close();
+            if (s != null)
+                s.close();
+            if (c != null)
+                c.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("关闭数据库连接失败",e);
+        }
+    }
+
+    public static void close(Connection c, Statement s){
+        close(c,s,null);
     }
 }
