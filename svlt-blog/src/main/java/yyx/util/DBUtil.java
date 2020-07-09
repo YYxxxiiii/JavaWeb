@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+//数据库的工具类
 public class DBUtil {
     private static final String URL = "jdbc:mysql://localhost:3306/blogdemo";
     private static final String USERNAME = "root";
