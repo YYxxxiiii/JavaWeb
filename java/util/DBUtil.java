@@ -3,17 +3,14 @@ package util;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBUtil {
 
     private static volatile DataSource DS;
-    private static final String URL = "jdbc:mysql://localhost:3306/stu_dorm";
+    private static final String URL = "jdbc:mysql://localhost:3306/stu_dorm?characterEncoding=UTF-8";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "1008";
+    private static final String PASSWORD = "root";
     private DBUtil(){}
     private static DataSource getDS() {
         if (DS == null) {
